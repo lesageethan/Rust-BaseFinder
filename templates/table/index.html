@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2078305498601771"
+     	crossorigin="anonymous"></script>
+	<script data-cfasync="false" src="//d2vwl2vhlatm2f.cloudfront.net/?vlwvd=959274"></script>
+        <title>Rust BaseFinder</title>
+        <!-- bootstrap cdn -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <link rel="stylesheet" href="{% static "stylesheet.css" %}?v=71" type="text/css">
+        <link rel="shortcut icon" href="{% static "favicon.ico" %}" type="image/x-icon">
+        <link rel="icon" href="{% static "favicon.ico" %}" type="image/x-icon">
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover({
+                    placement : 'top',
+                    trigger : 'hover'
+                });
+            });
+        </script>
+	<!-- Bidvertiser2070287 -->
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108812754-4"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-108812754-4');
+        </script>
+        <meta content='maximum-scale=1.0, initial-scale=1.0, width=device-width' name='viewport'>
+        <script type="text/javascript">
+          window._mNHandle = window._mNHandle || {};
+          window._mNHandle.queue = window._mNHandle.queue || [];
+          medianet_versionId = "3121199";
+        </script>
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+              <img class="logoImage" width="30" height="30" src="{% static "Logo.png" %}">
+              RUST BASEFINDER
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/log_out">Log Out</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/submit">Add a Design</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/log_in">Log In</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/sign_up">Sign Up</a>
+                </li>
+                {% endif %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Leaderboards
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="/efficiency_leaderboard">Efficiency Leaderboard</a>
+                      <a class="dropdown-item" href="/defense_leaderboard">Defense Leaderboard</a>
+                      <a class="dropdown-item" href="/all_bases">All Designs</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Partners
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="https://discord.com/invite/KD46cZ8" target="_blank">Builder&apos;s Sanctuary</a>
+                  </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/sponsor">Advertise</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+      </nav>
+          <br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+                <h1>Rust BaseFinder<sup> beta</sup></h1>
+                <h5>Created by <a href="https://ethanlesage.com" target="_blank">Ethan LeSage</a></h5>
+                <p>Rust Basefinder is a website designed to help people find and share the best Rust base designs. To find the perfect base design for your Rust wipe, simply fill in the form on the right and press 'Go'.</p>
+                <p>Alternatively, you can browse our curated lists of base designs by navigating through the navbar or the links below.</p>
+                <p><a href="https://discord.gg/yXBE9cf" target="_blank">Click here to join the basefinder discord server</a></p>
+              </div>
+              <div class="col-sm-4 formcontainercontainer">
+                <div class="formcontainer">
+                  <h3>Find the Perfect Base</h3>
+                  <form action="/" method="post">
+                    {% csrf_token %}
+                    <label>Number of Base Members:</label>
+                    <input name="request_group_size" required="" id="id_request_group_size" class="form-control" type="number">
+                    <br>
+                    <label>My Build Budget:</label>
+                    <input name="budget_stone" required="" id="id_budget_stone" class="form-control" type="number" placeholder="Stone">
+                    <input name="budget_frags" required="" id="id_budget_frags" class="form-control" type="number" placeholder="Frags">
+                    <input name="budget_hqm" required="" id="id_budget_hqm" class="form-control" type="number" placeholder="HQM"><br>
+                    <button type="submit" class="btn btn-primary btn-search-form">Go!</button>
+                  </form> 
+                </div>
+              </div>
+            </div>
+            <br>
+          </div>
+
+          <div class="container">
+            <h2>Navigation</h2>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="card">
+                  <img class="card-img-top" src="{% static "defense.jpg" %}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Strength Leaderboard</h5>
+                    <p class="card-text">Browse a list of some of the strongest Rust bases ever made.</p>
+                    <a href="/defense_leaderboard" class="btn btn-primary">Browse Designs</a>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <img class="card-img-top" src="{% static "efficiency.jpg" %}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Efficiency Leaderboard</h5>
+                    <p class="card-text">Browse the most efficient and best value Rust bases. Solo/Duo/Trios, look no further!</p>
+                    <a href="/efficiency_leaderboard" class="btn btn-primary">Browse Designs</a>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <img class="card-img-top" src="{% static "plus.jpg" %}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Submit a New Design</h5>
+                    <p class="card-text">Think you've got something good to share? Click here to submit a new base design to the basefinder.</p>
+                    <a href="/submit" class="btn btn-primary">Submit a Base</a>
+                  </div>
+                </div>
+                <br>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="container">
+            <h2>Newly Added Designs</h2>
+            <table class="table base-table" id="t">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width:  25%" data-toggle="popover"  data-content="The name given to this base design. Click the link to see a tutorial.">Name</th>
+                    <th scope="col" data-toggle="popover"  data-content="The maximum number of occupants suitable for this base.">Group Size</th>
+                    <th scope="col" data-toggle="popover"  data-content="The resource cost of the base in scrap">Cost<br><small>(Hover for S/M/HQM cost)</small></th>
+                    <th scope="col" data-toggle="popover"  data-content="Number of rockets required to every TC.">Rockets to Raid </th>
+                    <th scope="col" data-toggle="popover"  data-content="Score is calculated by TC Raid divided by Upkeep Cost. This rating tells you how efficient the base is at deterring raiders. The higher the better.">Efficiency Score</th>
+                    <th scope="col" style="width: 18%">Tags</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{ tableItems| safe }}
+                </tbody>
+              </table>
+          </div>
+
+          <footer>
+            <div class="container">
+              <br>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h4>Disclaimer</h4>
+                  <p>Rust Basefinder is simply a collection of YouTube videos. We have no intellectual right over the videos linked on our site, and similarly we are not responsible for any of the views or actions presented in videos linked on this site.</p>
+                </div>
+                <div class="col-sm-3">
+                  <h4>Contact</h4>
+                  <p>To contact Ethan LeSage, the creator of this site, please join our Discord: <a href="https://discord.gg/yXBE9cf">https://discord.gg/yXBE9cf</a></p>
+                </div>
+                <div class="col-sm-6">
+                  <h4>Rules</h4>
+                  <p>Currently anyone can post to this site, however if rules are broken we may need to limit who is allowed to post. The rules currently are:</p>
+                  <ul>
+                    <li>No profanity is to be posted anywhere to the site.</li>
+                    <li>You are not to lie about raid cost, build cost or upkeep cost.</li>
+                    <li>'Extra Features' must be kept short.</li>
+                  </ul>
+                  <p>We reserve the right to remove base submissions at will.</p>
+                </div>
+              </div>
+            </div>
+          </footer>
+    </body>
+</html>

@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rust BaseFinder</title>
+        <!-- bootstrap cdn -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <link rel="stylesheet" href="{% static "stylesheet.css" %}?v=70" type="text/css">
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover({
+                    placement : 'top',
+                    trigger : 'hover'
+                });
+            });
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108812754-4"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-108812754-4');
+        </script>
+        <link rel="shortcut icon" href="{% static "favicon.ico" %}" type="image/x-icon">
+        <link rel="icon" href="{% static "favicon.ico" %}" type="image/x-icon">
+        <meta content='maximum-scale=1.0, initial-scale=1.0, width=device-width' name='viewport'>
+        <script type="text/javascript">
+          window._mNHandle = window._mNHandle || {};
+          window._mNHandle.queue = window._mNHandle.queue || [];
+          medianet_versionId = "3121199";
+        </script>
+        <script src="https://contextual.media.net/dmedianet.js?cid=8CU682C6F" async="async"></script>
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+              <img class="logoImage" width="30" height="30" src="{% static "Logo.png" %}">
+              RUST BASEFINDER
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/log_out">Log Out</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/submit">Add a Design</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/log_in">Log In</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/sign_up">Sign Up</a>
+                </li>
+                {% endif %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Leaderboards
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="/efficiency_leaderboard">Efficiency Leaderboard</a>
+                      <a class="dropdown-item" href="/defense_leaderboard">Defense Leaderboard</a>
+                      <a class="dropdown-item" href="/all_bases">All Designs</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/sponsor">Advertise</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+      </nav>
+
+          <br>
+          <div class="container">
+            <h2>Submit a New Design</h2>
+            <p>Use the form below to submit a new base design.</p>
+
+            <form action="/submit/" method="post">
+                {% csrf_token %}
+                <label>Base Name</label>
+                <input type="text" name="name" maxlength="32" required="" id="id_name" class="form-control">
+                <br>
+                <label>Creator Name<br><small>Name of the YouTuber who designed the site.</small></label>
+                <input type="text" name="creator" maxlength="128" required="" id="id_creator" class="form-control">
+                <br>
+                <label>Youtube Tutorial Link<br><small>This must be a link to a YouTube video.</small></label>
+                <input type="text" name="link" maxlength="128" required="" id="id_link" class="form-control">
+                <br>
+                <label>Group Size<br><small>Maximum potential occupants for this base design.</small></label>
+                <input type="number" name="group_size" required="" id="id_group_size" class="form-control">
+                <br>
+                <label>Resources to Build<br><small>This does not need to include the cost of deployabes.</small></label>
+                <div class="row">
+                    <div class="col-sm-4"><input type="number" name="build_cost_stone" required="" id="id_build_cost_stone" class="form-control" placeholder="Stone"></div>
+                    <div class="col-sm-4"><input type="number" name="build_cost_frags" required="" id="id_build_cost_frags" class="form-control" placeholder="Frags"></div>
+                    <div class="col-sm-4"><input type="number" name="build_cost_hqm" required="" id="id_build_cost_hqm" class="form-control" placeholder="HQM"></div>
+                </div>
+                <br>
+                <label>Resources to Upkeep 24 Hours<br><small>Total resources to upkeep between every TC.</small></label>
+                <div class="row">
+                    <div class="col-sm-4"><input type="number" name="upkeep_cost_stone" required="" id="id_upkeep_cost_stone" class="form-control" placeholder="Stone"></div>
+                    <div class="col-sm-4"><input type="number" name="upkeep_cost_frags" required="" id="id_upkeep_cost_frags" class="form-control" placeholder="Frags"></div>
+                    <div class="col-sm-4"><input type="number" name="upkeep_cost_hqm" required="" id="id_upkeep_cost_hqm" class="form-control" placeholder="HQM"></div>
+                </div>
+                <br>
+                <label>Minimum Rockets to Raid Every TC<br><small>This must be the absolute cheapest route to TC.</small></label>
+                <input type="number" name="raid_cost" required="" id="id_raid_cost" class="form-control">
+                <br>
+                <label>Tags<br><small>Please choose the three most appropriate for this design.</small></label>
+                <select type="text" name="feature_1" maxlength="16" required="" id="id_feature_1" class="form-control">
+                  <option selected disabled>Please select</option>
+                  <option>Adequate Storage</option>
+                  <option>Budget</option>
+                  <option>Bunker</option>
+                  <option>Ergonomic</option>
+                  <option>Expandable</option>
+                  <option>Furnace Base</option>
+                  <option>Heli Storage</option>
+                  <option>Multi TC</option>
+                  <option>No Blueprints</option>
+                  <option>Offline Oriented</option>
+                  <option>Online Oriented</option>
+                  <option>Peekdowns</option>
+                  <option>Trap Base</option>
+                  <option>Unique</option>
+                  <option>Wall Stack</option>
+                </select>
+                <br>
+                <select type="text" name="feature_2" maxlength="16" required="" id="id_feature_2" class="form-control">
+                  <option selected disabled>Please select</option>
+                  <option>Adequate Storage</option>
+                  <option>Budget</option>
+                  <option>Bunker</option>
+                  <option>Ergonomic</option>
+                  <option>Expandable</option>
+                  <option>Furnace Base</option>
+                  <option>Heli Storage</option>
+                  <option>Multi TC</option>
+                  <option>No Blueprints</option>
+                  <option>Offline Oriented</option>
+                  <option>Online Oriented</option>
+                  <option>Peekdowns</option>
+                  <option>Trap Base</option>
+                  <option>Unique</option>
+                  <option>Wall Stack</option>
+                </select>
+                <br>
+                <select type="text" name="feature_3" maxlength="16" required="" id="id_feature_3" class="form-control">
+                  <option selected disabled>Please select</option>
+                  <option>Adequate Storage</option>
+                  <option>Budget</option>
+                  <option>Bunker</option>
+                  <option>Ergonomic</option>
+                  <option>Expandable</option>
+                  <option>Furnace Base</option>
+                  <option>Heli Storage</option>
+                  <option>Multi TC</option>
+                  <option>No Blueprints</option>
+                  <option>Offline Oriented</option>
+                  <option>Online Oriented</option>
+                  <option>Peekdowns</option>
+                  <option>Trap Base</option>
+                  <option>Unique</option>
+                  <option>Wall Stack</option>
+                </select>
+                <br>
+                <label>Fortify File<br><small>This must be a pastebin link. Leave blank if none.</small></label>
+                <input type="text" name="fortify_link" maxlength="32" id="id_fortify_link" class="form-control">
+                <br>
+                <input class="btn btn-primary btn-search-form" type="submit" value="Submit">
+            </form>
+          </div>
+          <br>
+          <footer>
+            <div class="container">
+              <br>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h4>Disclaimer</h4>
+                  <p>Rust Basefinder is simply a collection of YouTube videos. We have no intellectual right over the videos linked on our site, and similarly we are not responsible for any of the views or actions presented in videos linked on this site.</p>
+                </div>
+                <div class="col-sm-3">
+                  <h4>Contact</h4>
+                  <p>To contact Ethan LeSage, the creator of this site, please join our Discord: <a href="https://discord.gg/yXBE9cf">https://discord.gg/yXBE9cf</a></p>
+                </div>
+                <div class="col-sm-6">
+                  <h4>Rules</h4>
+                  <p>Currently anyone can post to this site, however if rules are broken we may need to limit who is allowed to post. The rules currently are:</p>
+                  <ul>
+                    <li>No profanity is to be posted anywhere to the site.</li>
+                    <li>You are not to lie about raid cost, build cost or upkeep cost.</li>
+                    <li>'Extra Features' must be kept short.</li>
+                  </ul>
+                  <p>We reserve the right to remove base submissions at will.</p>
+                </div>
+              </div>
+            </div>
+          </footer>
+    </body>
+</html>
